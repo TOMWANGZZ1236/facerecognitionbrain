@@ -6,6 +6,8 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm'
 import Rank from './components/Rank/Rank'
 import ParticlesBg from 'particles-bg'
 import FaceRecognition from './components/FaceRecognition/FaceRecognition'
+import Signin from './components/Signin/Signin'
+import Register from './components/Register/Register';
 
 
 
@@ -13,7 +15,7 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition'
 // of the image we want as an input.
 
 const apiconfiguration =  (imageUrl) => {
-  const PAT = '';
+ 
   const USER_ID = 'tomwangwaterloo';
   const APP_ID = 'SmartBrainTW';
   const IMAGE_URL = imageUrl;
@@ -54,6 +56,8 @@ class App extends Component {
       input : '',
       imageUrl : '',
       box : {},
+      route: 'signin',
+      isSignedIn : false,
     }
   }
   calculateFaceLocations = (data) => {
@@ -61,8 +65,6 @@ class App extends Component {
     const image = document.getElementById('inputImage');
     const width = Number(image.width);
     const height = Number(image.height);
-    // console.log(clarifaiFace.bottom_row);
-    // console.log(clarifaiFace.top_row);
     return {
       leftCol : clarifaiFace.left_col * width,
       topRow : clarifaiFace.top_row * height,
@@ -77,6 +79,15 @@ class App extends Component {
   onInputChange = (event) => {
     this.setState({input : event.target.value});
   }
+  onRouteChange = (route) => {
+    if (route === 'home') {
+      this.setState({isSignedIn : true})
+    } else if (route === 'signin') {
+      this.setState({isSignedIn : false})
+    }
+    this.setState ({route: route})
+    
+  }
   onClickChange = ()  => {
     this.setState({imageUrl: this.state.input});
     fetch("https://cors-anywhere.herokuapp.com/https://api.clarifai.com/v2/models/face-detection/outputs", 
@@ -86,25 +97,6 @@ class App extends Component {
       console.log(result);
       const regions = result.outputs[0].data.regions;
       return regions;
-      // regions.forEach(region => {
-      //     // Accessing and rounding the bounding box values
-      //     const boundingBox = region.region_info.bounding_box;
-      //     const topRow = boundingBox.top_row.toFixed(3);
-      //     const leftCol = boundingBox.left_col.toFixed(3);
-      //     const bottomRow = boundingBox.bottom_row.toFixed(3);
-      //     const rightCol = boundingBox.right_col.toFixed(3);
-
-      //     // region.data.concepts.forEach(concept => {
-      //     //     // Accessing and rounding the concept value
-      //     //     const name = concept.name;
-      //     //     const value = concept.value.toFixed(4);
-
-      //     //     console.log(`${name}: ${value} BBox: ${topRow}, ${leftCol}, ${bottomRow}, ${rightCol}`);   
-              
-      //     // });
-      //     this.displayFaceBox({topRow : topRow, leftCol: leftCol, bottomRow: bottomRow, rightCol: rightCol});
-          
-      // });
     })
     .then(data => this.displayFaceBox(this.calculateFaceLocations(data)))
     .catch(error => console.log('error', error));
@@ -112,14 +104,24 @@ class App extends Component {
     console.log(this.state.box);
   }
   render() {return (
+    
     <div className="App">
-      <ParticlesBg type="cobweb" bg={true} num = {300} /> 
-      <Navigation/>
-      <Logo/>
-      <Rank/>
-      <ImageLinkForm onInputChange = {this.onInputChange} onClickChange= {this.onClickChange}/>
-      <FaceRecognition imageSource = {this.state.imageUrl} box = {this.state.box}/>
-    </div>
+   
+    <Navigation onRouteChange = {this.onRouteChange} isSignedIn = {this.state.isSignedIn} />
+      {
+      this.state.route === 'home' ?
+        <div>
+          <ParticlesBg type="cobweb" bg={true} num = {300} /> 
+          <Logo/>
+          <Rank/>
+          <ImageLinkForm onInputChange = {this.onInputChange} onClickChange= {this.onClickChange}/>
+          <FaceRecognition imageSource = {this.state.imageUrl} box = {this.state.box}/> 
+        </div> :
+        this.state.route === 'signin' ?
+       <Signin onRouteChange = {this.onRouteChange}/> :
+       <Register/>
+      }
+    </div> 
   );
 }
 }
