@@ -15,7 +15,7 @@ import Register from './components/Register/Register';
 // of the image we want as an input.
 
 const apiconfiguration =  (imageUrl) => {
- 
+  const PAT = '914a9169c8744e4a84605d7accab8c11';
   const USER_ID = 'tomwangwaterloo';
   const APP_ID = 'SmartBrainTW';
   const IMAGE_URL = imageUrl;
@@ -58,7 +58,24 @@ class App extends Component {
       box : {},
       route: 'signin',
       isSignedIn : false,
+      user: {
+        id : '',
+        name: '',
+        email: '',
+        entries: 0,
+        joined: ''
+      }
     }
+  }
+  loadUser = (data) => {
+    this.setState({ user: {
+      id : data.id,
+      name : data.name,
+      email : data.email,
+      entries : data.entries,
+      joined : data.joined
+    }
+    })
   }
   calculateFaceLocations = (data) => {
     const clarifaiFace = data[0].region_info.bounding_box;
@@ -98,7 +115,20 @@ class App extends Component {
       const regions = result.outputs[0].data.regions;
       return regions;
     })
-    .then(data => this.displayFaceBox(this.calculateFaceLocations(data)))
+    .then(data => {
+      fetch('http://localhost:3001/image', {
+        method : 'put',
+        headers: {'Content-Type' : 'application/json'},
+        body : JSON.stringify({
+            id : this.state.user.id
+        })
+      })
+      .then(response => response.json())
+      .then(entries => {
+        this.setState(Object.assign(this.state.user, {entries: entries}));
+      })
+      this.displayFaceBox(this.calculateFaceLocations(data))
+    })
     .catch(error => console.log('error', error));
 
     console.log(this.state.box);
@@ -113,12 +143,12 @@ class App extends Component {
         <div>
           <ParticlesBg type="cobweb" bg={true} num = {300} /> 
           <Logo/>
-          <Rank/>
+          <Rank name = {this.state.user.name} entries = {this.state.user.entries}/>
           <ImageLinkForm onInputChange = {this.onInputChange} onClickChange= {this.onClickChange}/>
           <FaceRecognition imageSource = {this.state.imageUrl} box = {this.state.box}/> 
         </div> :
         this.state.route === 'signin' ?
-       <Signin onRouteChange = {this.onRouteChange}/> :
+       <Signin loadUser = {this.loadUser} onRouteChange = {this.onRouteChange}/> :
        <Register/>
       }
     </div> 
