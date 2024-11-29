@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -9,7 +9,7 @@
 
 .center {
   display: flex;
-  justify-content: center;
+  justify-content:center;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -40,12 +40,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-body {
-  margin: 0;
-  font-family: "Courier New", Courier, monospace;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(90deg, #b3e5fc 0%, #e6e6e6 100%);
-}
+} */
