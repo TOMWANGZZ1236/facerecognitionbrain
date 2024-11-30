@@ -2,12 +2,8 @@ import React from "react";
 
 const HomeTitle = ({name}) => {
     return(
-        <div className="ma4 mt0">
-           <div className = 'white f3'> 
-            {`${name}, checkout below to see your students' attendence!`}
-           </div>
-        </div>
-    
+        <p class="text-center text-3xl font-400 leading-loose text-gray-900 dark:text-white">
+            {`Hello ${name}, Welcome to SmartAttendence, we are here to help you manage your students' attendence`}</p>
     );
 }
 
