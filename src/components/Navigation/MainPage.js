@@ -1,7 +1,11 @@
 import React from 'react';
-import HomeTitle from '../Rank/HomeTitle';
+import HomeTitle from '../Texts/HomeTitle';
 import { useState } from 'react';
 import CourseList from '../Course/CourseList';
+import CourseDetail from '../Course/CourseDetail';
+import { Avatar, Dropdown, Navbar } from "flowbite-react";
+
+
 
 
 const SidebarItem = ({ iconPath, label, onRouteChange }) => {
@@ -15,20 +19,27 @@ const SidebarItem = ({ iconPath, label, onRouteChange }) => {
   );
 };
 
-const GridPlaceholder = () => {
+const GridPlaceholder = (component) => {
   return (
     <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-      <p className="text-2xl text-gray-400 dark:text-gray-500">
-        <svg className="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-          <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 1v16M1 9h16" />
-        </svg>
-      </p>
+      
     </div>
   );
 };
 
-const Dashboard = () => {
+const Dashboard = ({id}) => {
   const [DashboardStatus, setStatus] = useState('Home');
+
+  const onRouteChange = (route) => {
+    if (route === 'Home') {
+      setStatus('Home');
+    } else if (route === 'Courselist') {
+      setStatus('Courselist');
+    } else if (route === 'CourseDetail') {
+      setStatus('CourseDetail');
+    }
+    
+  }
   return (
     <>
       <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -46,11 +57,22 @@ const Dashboard = () => {
               </a>
             </div>
             {/* User Menu */}
-            <div className="flex items-center ms-3">
-              <button type="button" className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false">
-                <span className="sr-only">Open user menu</span>
-                <img className="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo" />
-              </button>
+            <div className="flex md:order-2">
+              <Dropdown
+                arrowIcon={false}
+                inline
+                label={
+                  <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
+                }
+              >
+                <Dropdown.Header>
+                  <span className="block text-sm">Tom</span>
+                  <span className="block truncate text-sm font-medium">Tom@gmail.com</span>
+                </Dropdown.Header>
+                <Dropdown.Item>My profile</Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item onClick={() =>{}}>Sign out</Dropdown.Item>
+              </Dropdown>
             </div>
           </div>
         </div>
@@ -64,22 +86,60 @@ const Dashboard = () => {
             </li>
             <li>
               <SidebarItem iconPath="M12 6.03v13m0-13c-2.819-.831-4.715-1.076-8.029-1.023A.99.99 0 0 0 3 6v11c0 .563.466 1.014 1.03 1.007 3.122-.043 5.018.212 7.97 1.023m0-13c2.819-.831 4.715-1.076 8.029-1.023A.99.99 0 0 1 21 6v11c0 .563-.466 1.014-1.03 1.007-3.122-.043-5.018.212-7.97 1.023" label="My Courses" 
-              onRouteChange={() => {setStatus('Yana')}}/>
+              onRouteChange={() => {setStatus('CourseList')}}/>
             </li>
             {/* Additional items */}
           </ul>
         </div>
       </aside>
-      <div className="p-4 sm:ml-64">
+      {/* <div className="p-4 sm:ml-64">
         <div className="p-4 rounded-lg dark:border-gray-700 mt-14">
           {
             (() => {if (DashboardStatus === 'Home') {
              return <HomeTitle name = 'Tom'/> }
-            else {
-             return <CourseList/>
+            else if (DashboardStatus === 'CourseList'){
+             return <CourseList onRouteChange = {onRouteChange}/>
             }
+            else if (DashboardStatus === 'CourseDetail'){
+              return <CourseDetail id = {id}/>
+             }
             })()
           }
+        </div>
+      </div> */}
+      <div className="p-4 sm:ml-64">
+        <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+          <div className="grid grid-cols-3 gap-4">
+            <GridPlaceholder />
+            <GridPlaceholder />
+            <GridPlaceholder />
+            
+          </div>
+          <div className="grid grid-cols-1 gap-4">
+            <div className="p-4 rounded-lg dark:border-gray-700 mt-4">
+              {
+                (() => {if (DashboardStatus === 'Home') {
+                return <HomeTitle name = 'Tom'/> }
+                else if (DashboardStatus === 'CourseList'){
+                return <CourseList onRouteChange = {onRouteChange}/>
+                }
+                else if (DashboardStatus === 'CourseDetail'){
+                  
+                  return <div> 
+                  <CourseDetail id = {id}/>           
+                  <div className="grid grid-cols-2 gap-4 mt-10">
+                    <GridPlaceholder />
+                    <GridPlaceholder />
+                    </div>
+                  </div>
+                  
+
+                }
+                })()
+              }
+            </div>
+          </div>
+
         </div>
       </div>
     </>

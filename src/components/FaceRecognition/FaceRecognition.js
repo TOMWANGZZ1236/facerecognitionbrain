@@ -4,9 +4,9 @@ import './FaceRecognition.css';
 
 const FaceRecognition = ({imageSource, boxes}) => {
     return(
-        <div className = 'center ma'>
-            <div className = 'absolute mt2'>
-                <img id = 'inputImage' alt = '' src = {imageSource}  width = '500px' height = 'auto'/>
+        <div className = 'flex justify-center'>
+            <div className = 'absolute mt-6 mr-32'>
+                <img className = 'w-auto h-64' id = 'inputImage' alt = '' src = {imageSource} />
                 {
                 boxes.map((box, index) => {
                     return <div key = {index} className='bounding-box' style={{top: box.topRow, right: box.rightCol, bottom: box.bottomRow, left: box.leftCol}}></div>
