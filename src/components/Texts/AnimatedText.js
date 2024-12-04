@@ -1,9 +1,9 @@
 const AnimatedText = () => {
-    const text = "39 out of 40 students";
+    const text = "39 out of 40 attended";
   
     return (
       
-        <h1 className="mt-12 text-2xl font-bold leading-6 text-black w-1/3">
+        <h1 className="mt-4 text-2xl font-bold leading-6 text-black w-full">
           {text.match(/./gu).map((char, index) => (
             <span
               className="animate-text-reveal inline-block [animation-fill-mode:backwards]"

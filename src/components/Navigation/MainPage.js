@@ -4,7 +4,9 @@ import { useState } from 'react';
 import CourseList from '../Course/CourseList';
 import CourseDetail from '../Course/CourseDetail';
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
-
+import AnimatedText from '../Texts/AnimatedText'
+import CircularProgress from '../Stats/CircularProgress'
+import 'react-circular-progressbar/dist/styles.css';
 
 
 
@@ -109,31 +111,26 @@ const Dashboard = ({id}) => {
       </div> */}
       <div className="p-4 sm:ml-64">
         <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-          <div className="grid grid-cols-3 gap-4">
-            <GridPlaceholder />
-            <GridPlaceholder />
-            <GridPlaceholder />
-            
-          </div>
           <div className="grid grid-cols-1 gap-4">
             <div className="p-4 rounded-lg dark:border-gray-700 mt-4">
               {
                 (() => {if (DashboardStatus === 'Home') {
                 return <HomeTitle name = 'Tom'/> }
                 else if (DashboardStatus === 'CourseList'){
-                return <CourseList onRouteChange = {onRouteChange}/>
+                return <div> 
+                <div className="grid grid-cols-3 gap-4">
+                  <GridPlaceholder />
+                  <GridPlaceholder />
+                  <GridPlaceholder />
+                  
+                </div>
+                  <CourseList onRouteChange = {onRouteChange}/>
+                </div>
                 }
-                else if (DashboardStatus === 'CourseDetail'){
-                  
+                else if (DashboardStatus === 'CourseDetail'){      
                   return <div> 
-                  <CourseDetail id = {id}/>           
-                  <div className="grid grid-cols-2 gap-4 mt-10">
-                    <GridPlaceholder />
-                    <GridPlaceholder />
-                    </div>
+                  <CourseDetail id = {id}/> 
                   </div>
-                  
-
                 }
                 })()
               }

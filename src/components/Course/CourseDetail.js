@@ -101,17 +101,20 @@ class CourseDetail extends Component {
       <div className=""> 
       <CourseTitle CourseName='MTE201' Term= '2025 Winter'/>
       </div>
-      {/* <Rank name = {this.state.user.name} entries = {this.state.user.entries}/> */}
-      <DropUpload onInputChange = {this.onInputChange} onClickChange= {this.onClickChange} onImageChange = {this.onImageChange}/>
+      <DropUpload imageSource = {this.state.imageUrl} boxes = {this.state.boxes} onInputChange = {this.onInputChange} onClickChange= {this.onClickChange} onImageChange = {this.onImageChange}/>
       {
       this.state.imageUrl !== '' &&
       <div className='flex justify-center mr-32'>
         {/* <FaceRecognition imageSource = {this.state.imageUrl} boxes = {this.state.boxes}/>  */}
-        <AnimatedText/>
-        <CircularProgress percentage={75}/>
-       </div> 
-
-  }
+        {/* <AnimatedText/>
+        <CircularProgress percentage={75}/> */}
+       </div> }
+       <div className="grid grid-cols-2 gap-4 mt-10">
+          <div className="items-center h-48 rounded bg-gray-50 dark:bg-gray-800">
+            <AnimatedText/>
+            <CircularProgress percentage={75}/>
+          </div>
+      </div>
     </div> 
   );
 }

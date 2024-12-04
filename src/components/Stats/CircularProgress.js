@@ -26,7 +26,7 @@ const CircularProgress = ({ percentage }) => {
   }, [percentage, circumference]);
 
   return (
-    <div className="mt-4 flex justify-center items-center relative">
+    <div className="sm: mt-0 md:mt-4 flex justify-center items-center relative">
       <svg width="120" height="120">
         <circle
           cx="60"
