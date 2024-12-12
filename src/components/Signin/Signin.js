@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
-
+import { useDispatch } from 'react-redux';
+import { initializeCourse } from '../../actions/index';
 
 const Signin = ({loadUser, onRouteChange}) => {
-
+    const dispatch = useDispatch();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     let onPasswordChange = (event) => {
@@ -26,8 +27,21 @@ const Signin = ({loadUser, onRouteChange}) => {
             .then(response =>  response.json())
             .then(user => {
                 if (user.id) {
-                    loadUser(user);
-                    onRouteChange('home');
+                  fetch('http://localhost:3001/courseDisplay', {
+                    method : 'post',
+                    headers: {'Content-Type' : 'application/json'},
+                    body : JSON.stringify({
+                        email : email
+                    })
+                 })
+                 .then(response => response.json())
+                 .then(courses => {
+                  // console.log('test1', courses);
+                  dispatch(initializeCourse(courses));
+                  loadUser(user, courses);
+                  onRouteChange('home');
+                 })
+
                 }
             })
             .catch(rejected => {

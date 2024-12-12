@@ -1,5 +1,5 @@
-const AnimatedText = () => {
-    const text = "39 out of 40 attended";
+const AnimatedText = ({attended, actual}) => {
+    const text = `${attended} out of ${actual} attended`;
   
     return (
       

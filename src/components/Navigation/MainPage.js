@@ -7,6 +7,7 @@ import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import AnimatedText from '../Texts/AnimatedText'
 import CircularProgress from '../Stats/CircularProgress'
 import 'react-circular-progressbar/dist/styles.css';
+import brain from './Logo.png'
 
 
 
@@ -29,15 +30,18 @@ const GridPlaceholder = (component) => {
   );
 };
 
-const Dashboard = ({id}) => {
+const Dashboard = ({email, onRouteChangeParent}) => {
   const [DashboardStatus, setStatus] = useState('Home');
+  const [selectedCourse, setSelectedCourse] = useState('');
 
-  const onRouteChange = (route) => {
+
+  const onRouteChange = (route, selectedCourse = '') => {
     if (route === 'Home') {
       setStatus('Home');
     } else if (route === 'Courselist') {
       setStatus('Courselist');
-    } else if (route === 'CourseDetail') {
+    } else if (route === 'CourseDetail' && selectedCourse !== '') {
+      setSelectedCourse(selectedCourse)
       setStatus('CourseDetail');
     }
     
@@ -52,9 +56,10 @@ const Dashboard = ({id}) => {
               <button aria-label="Open sidebar" type="button" className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                 <span className="sr-only">Open sidebar</span>
                 {/* Replace with appropriate icon */}
+
               </button>
-              <a href="https://flowbite.com" className="flex ms-2 md:me-24">
-                <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 me-3" alt="FlowBite Logo" />
+              <a href="https://github.com/TOMWANGZZ1236" className="flex ms-2 md:me-24">
+                <img src={brain} className="h-8 me-3" alt="FlowBite Logo" />
                 <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">SmartAttendence</span>
               </a>
             </div>
@@ -64,7 +69,7 @@ const Dashboard = ({id}) => {
                 arrowIcon={false}
                 inline
                 label={
-                  <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
+                  <Avatar alt="User settings" img="https://cdn-icons-png.flaticon.com/512/5027/5027076.png" rounded />
                 }
               >
                 <Dropdown.Header>
@@ -73,7 +78,7 @@ const Dashboard = ({id}) => {
                 </Dropdown.Header>
                 <Dropdown.Item>My profile</Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item onClick={() =>{}}>Sign out</Dropdown.Item>
+                <Dropdown.Item onClick={() =>{onRouteChangeParent('signin')}}>Sign out</Dropdown.Item>
               </Dropdown>
             </div>
           </div>
@@ -94,23 +99,9 @@ const Dashboard = ({id}) => {
           </ul>
         </div>
       </aside>
-      {/* <div className="p-4 sm:ml-64">
-        <div className="p-4 rounded-lg dark:border-gray-700 mt-14">
-          {
-            (() => {if (DashboardStatus === 'Home') {
-             return <HomeTitle name = 'Tom'/> }
-            else if (DashboardStatus === 'CourseList'){
-             return <CourseList onRouteChange = {onRouteChange}/>
-            }
-            else if (DashboardStatus === 'CourseDetail'){
-              return <CourseDetail id = {id}/>
-             }
-            })()
-          }
-        </div>
-      </div> */}
       <div className="p-4 sm:ml-64">
-        <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+        {/* <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14"> */}
+        <div className="border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
           <div className="grid grid-cols-1 gap-4">
             <div className="p-4 rounded-lg dark:border-gray-700 mt-4">
               {
@@ -118,18 +109,18 @@ const Dashboard = ({id}) => {
                 return <HomeTitle name = 'Tom'/> }
                 else if (DashboardStatus === 'CourseList'){
                 return <div> 
-                <div className="grid grid-cols-3 gap-4">
+                {/* <div className="grid grid-cols-3 gap-4">
                   <GridPlaceholder />
                   <GridPlaceholder />
                   <GridPlaceholder />
                   
-                </div>
-                  <CourseList onRouteChange = {onRouteChange}/>
+                </div> */}
+                  <CourseList setSelectedCourse = {setSelectedCourse} email = {email} onRouteChange = {onRouteChange}/>
                 </div>
                 }
                 else if (DashboardStatus === 'CourseDetail'){      
                   return <div> 
-                  <CourseDetail id = {id}/> 
+                  <CourseDetail email= {email} selectedCourse = {selectedCourse}/> 
                   </div>
                 }
                 })()
