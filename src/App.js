@@ -54,7 +54,7 @@ function App() {
     <div>
       {state.route === 'home' ?
         <div className='App'>
-          <Dashboard email={state.user.email} onRouteChangeParent={onRouteChange} />
+          <Dashboard name = {state.user.name} email={state.user.email} onRouteChangeParent={onRouteChange} />
         </div> :
         state.route === 'signin' ?
         <div>

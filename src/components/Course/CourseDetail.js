@@ -85,7 +85,7 @@ const CourseDetail = ({email, selectedCourse}) => {
       <div className="">
         <CourseTitle CourseName= {selectedCourse.name} Term= {selectedCourse.time}/>
       </div>
-      <DropUpload email = {email} selectedCourse = {selectedCourse} imageSource={state.imageUrl} 
+      <DropUpload percentage={(detectedNumber/selectedCourse.students) *100} attended={detectedNumber} email = {email} selectedCourse = {selectedCourse} imageSource={state.imageUrl} 
       boxes={state.boxes} onInputChange={onInputChange} onClickChange={onClickChange} onImageChange={onImageChange}/>
       {state.imageUrl !== '' &&
         <div className='flex justify-center mr-32'>

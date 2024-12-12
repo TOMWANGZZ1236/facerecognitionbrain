@@ -12,9 +12,8 @@ function cleanUrl(url) {
 }
 
 
-function DropUpload({email, selectedCourse, onInputChange, onClickChange, onImageChange, imageSource, boxes}) {
-  const [selectedFile, setSelectedFile] = useState(null);
-
+function DropUpload({percentage, attended, email, selectedCourse, onInputChange, onClickChange, onImageChange, imageSource, boxes}) {
+  
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -46,7 +45,7 @@ function DropUpload({email, selectedCourse, onInputChange, onClickChange, onImag
           </svg>
           Submit
         </button> */}
-        <ImageSubmission email = {email} selectedCourse={selectedCourse}/>
+        <ImageSubmission percentage = {percentage} attended = {attended} email = {email} selectedCourse={selectedCourse}/>
       </div>
         <Label
           htmlFor="dropzone-file"

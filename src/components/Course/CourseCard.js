@@ -9,7 +9,7 @@ const CourseCard = ({email, course, onRouteChange, onSave}) => {
     };
     const statsData = [
         
-        { value: course.attendance, label: 'Attendence' },
+        { value: `${Number(course.attendance).toFixed(1)}%`, label: 'Attendence' },
         { value: course.lectures, label: 'Lectures' },
         { value: course.students, label: 'Students' },
     ];

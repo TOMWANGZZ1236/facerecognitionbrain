@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './SubmissionButton.css';
+import { updateCourse } from '../../actions/index';
+import { useDispatch } from 'react-redux';
 
 // Overlay component
 function Overlay({ children, show }) {
@@ -12,38 +14,44 @@ function Overlay({ children, show }) {
 }
 
 // ImageSubmission component with integrated Overlay
-function ImageSubmission({ email, selectedCourse }) {
+function ImageSubmission({percentage, attended, email, selectedCourse }) {
     const [submissionStatus, setSubmissionStatus] = useState('idle');
     const [errorMessage, setErrorMessage] = useState('');
-
+    const dispatch = useDispatch();
+    
     const handleSubmit = () => {
-        setSubmissionStatus('pending');
-
-        fetch('http://localhost:3001/imageSubmission', {
-            method: 'PUT',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                email: email,
-                name: selectedCourse.name,
+        if (attended !== -1) {
+            setSubmissionStatus('pending');
+            
+            fetch('http://localhost:3001/imageSubmission', {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    email: email,
+                    name: selectedCourse.name,
+                    newAttendance: percentage
+                })
             })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Success:', data);
-            setSubmissionStatus('success');
-            setTimeout(() => setSubmissionStatus('idle'), 5000); // Keep success message longer to view animation
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            setErrorMessage(error.message);
-            setSubmissionStatus('error');
-            setTimeout(() => setSubmissionStatus('idle'), 5000);
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Success:', data);
+                setSubmissionStatus('success');
+                const newCourse = {...selectedCourse, lectures : data.lectures, attendance: data.attendance }
+                dispatch(updateCourse(selectedCourse.name, newCourse));
+                setTimeout(() => setSubmissionStatus('idle'), 5000); // Keep success message longer to view animation
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                setErrorMessage(error.message);
+                setSubmissionStatus('error');
+                setTimeout(() => setSubmissionStatus('idle'), 5000);
+            });
+        }
     };
 
     return (
