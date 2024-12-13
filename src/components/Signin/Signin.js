@@ -16,7 +16,7 @@ const Signin = ({loadUser, onRouteChange}) => {
     };
     
     let onSubmit = () => {
-        fetch('http://localhost:3001/signin', {
+        fetch('https://smarbrain-api.onrender.com/signin', {
             method : 'post',
             headers: {'Content-Type' : 'application/json'},
             body : JSON.stringify({
@@ -27,7 +27,7 @@ const Signin = ({loadUser, onRouteChange}) => {
             .then(response =>  response.json())
             .then(user => {
                 if (user.id) {
-                  fetch('http://localhost:3001/courseDisplay', {
+                  fetch('https://smarbrain-api.onrender.com/courseDisplay', {
                     method : 'post',
                     headers: {'Content-Type' : 'application/json'},
                     body : JSON.stringify({

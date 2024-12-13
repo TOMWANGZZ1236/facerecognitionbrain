@@ -18,12 +18,12 @@ function ImageSubmission({percentage, attended, email, selectedCourse }) {
     const [submissionStatus, setSubmissionStatus] = useState('idle');
     const [errorMessage, setErrorMessage] = useState('');
     const dispatch = useDispatch();
-    
+
     const handleSubmit = () => {
         if (attended !== -1) {
             setSubmissionStatus('pending');
             
-            fetch('http://localhost:3001/imageSubmission', {
+            fetch('https://smarbrain-api.onrender.com/imageSubmission', {
                 method: 'PUT',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({

@@ -20,7 +20,7 @@ function CourseFormOverlay({email, onClose }) {
           
         };
         dispatch(addCourse(newCourse));
-        fetch('http://localhost:3001/courseCreate', {
+        fetch('https://smarbrain-api.onrender.com/courseCreate', {
             method : 'post',
             headers: {'Content-Type' : 'application/json'},
             body : JSON.stringify({

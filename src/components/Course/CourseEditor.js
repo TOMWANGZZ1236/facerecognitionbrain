@@ -18,7 +18,7 @@ function CourseEditor({email, initialCourse }) {
 
     const saveCourse = async () => {
         try {
-            const response = await fetch('http://localhost:3001/courseUpdate', {
+            const response = await fetch('https://smarbrain-api.onrender.com/courseUpdate', {
                 method: 'put',
                 headers: {
                     'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ function CourseEditor({email, initialCourse }) {
 
     const deleteC = async () => {
         try {
-            const response = await fetch('http://localhost:3001/courseDelete', {
+            const response = await fetch('https://smarbrain-api.onrender.com/courseDelete', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

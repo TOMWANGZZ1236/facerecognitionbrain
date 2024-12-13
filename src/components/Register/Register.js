@@ -19,7 +19,7 @@ const Register = ({loadUser, onRouteChange}) => {
     };
     
     let onSubmit = () => {
-        fetch('http://localhost:3001/register', {
+        fetch('https://smarbrain-api.onrender.com/register', {
             method : 'post',
             headers: {'Content-Type' : 'application/json'},
             body : JSON.stringify({

@@ -48,7 +48,7 @@ const CourseDetail = ({email, selectedCourse}) => {
 
   }
   const onClickChange = () => {
-    fetch('http://localhost:3001/handleClarifaiApi', {
+    fetch('https://smarbrain-api.onrender.com/handleClarifaiApi', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
