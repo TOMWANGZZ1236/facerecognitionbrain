@@ -74,7 +74,7 @@ const Dashboard = ({name, email, onRouteChangeParent}) => {
               >
                 <Dropdown.Header>
                   <span className="block text-sm">Tom</span>
-                  <span className="block truncate text-sm font-medium">Tom@gmail.com</span>
+                  <span className="block truncate text-sm font-medium">{email}</span>
                 </Dropdown.Header>
                 {/* <Dropdown.Item>My profile</Dropdown.Item> */}
                 <Dropdown.Divider />
