@@ -12,7 +12,7 @@ The Smart Attendance Application helps professors efficiently track class attend
 ## How It Works
 1. **Create an Account and Sign In**: Start by signing up or logging into your existing account. 
 <p align="center">
-  <img src="/assets/image1.png" alt="Login Screen" width="250">
+  <img src="/assets/coursecreation.png" alt="Login Screen" width="250">
 </p>
 2. **Create a Course**: Set up a new course or select an existing one that you want to track.
 3. **Upload a Class Image**: Submit an image of your class during a session.
