@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# Smart Attendance Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Image Demonstration
+![Smart Attendance Application Usage](/path/to/image.png)
 
-## Available Scripts
 
-In the project directory, you can run:
+## Introduction
+The Smart Attendance Application helps professors efficiently track class attendance through a user-friendly online platform. Using cutting-edge machine learning model, the app analyzes images of the classroom to determine how many of the students are present, simplifying the attendance tracking process.
 
-### `npm start`
+## Tech Stack
+- **Frontend**: Developed using TailwindCSS, React, and Redux for a responsive and interactive user interface.
+- **Backend**: Utilizes PostgreSQL for database management, with Express.js and Node.js powering the server-side logic.
+- **AI Technology**: Integrates the Clarifai API for accurate face detection.
+- **Deployment**: Hosted on Render to ensure high availability and performance.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## How It Works
+1. **Create an Account and Sign In**: Start by signing up or logging into your existing account.
+2. **Create a Course**: Set up a new course or select an existing one that you want to track.
+3. **Upload a Class Image**: Submit an image of your class during a session.
+4. **Check Attendance**: The system processes the image using face detection and provides an attendance report showing the percentage of students present.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
