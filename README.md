@@ -11,7 +11,7 @@ The Smart Attendance Application helps professors efficiently track class attend
 - **Frontend**: Developed using TailwindCSS, React, and Redux for a responsive and interactive user interface.
 - **Backend**: Utilizes PostgreSQL for database management, with Express.js and Node.js powering the server-side logic.
 - **AI Technology**: Integrates the Clarifai API for accurate face detection.
-- **Deployment**: Hosted on Render to ensure high availability and performance.
+- **Deployment**: Hosted on Render.
 
 ## How It Works
 1. **Create an Account and Sign In**: Start by signing up or logging into your existing account. 
