@@ -1,4 +1,7 @@
 # Smart Attendance Application
+<p align="center">
+  <img src="/assets/overview.png" alt="Login Screen" width="750">
+</p>
 
 ## Introduction
 The Smart Attendance Application helps professors efficiently track class attendance through a user-friendly online platform. Using cutting-edge machine learning model, the app analyzes images of the classroom to determine how many of the students are present, simplifying the attendance tracking process.
